@@ -1,16 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import GoogleAuth from './GoogleAuth';
 
 const Header = () => {
   return (
     <div>
       <div className="ui top attached menu">
-        <a className="item" href='#'>
+        <Link to='/' className='item'>
           Streamy
-        </a>
-        <div className="right menu" href='#'>
-          <a className="item">
+        </Link>
+        <div className="right menu">
+          <Link to='/' className='item'>
             All Streams
-          </a>
+          </Link>
+          <GoogleAuth/>
         </div>
       </div>
     </div>
