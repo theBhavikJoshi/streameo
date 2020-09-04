@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { createStream } from '../../actions/index';
 
 class StreamNew extends React.Component{
 
@@ -25,7 +27,7 @@ class StreamNew extends React.Component{
   }
 
   onSubmit = formValues => {
-    console.log(formValues);
+    this.props.createStream(formValues);
   }
 
   render() {
@@ -33,7 +35,7 @@ class StreamNew extends React.Component{
       <form className='ui form error' onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name='title' component={this.renderInput} label='Enter Title' />
         <Field name='description' component={this.renderInput} label='Enter Description' />
-        <button className="ui button primary">Submit</button>
+        <button className="ui button basic primary">Submit</button>
       </form>
     )
   }
@@ -48,7 +50,9 @@ const validate = formValues => {
   return errors;
 }
 
-export default reduxForm({
+export default connect(
+  null, { createStream }
+)(reduxForm({
   form: 'createStream',
   validate
-})(StreamNew);
+})(StreamNew));
